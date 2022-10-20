@@ -14,6 +14,12 @@
     <color name="lime_400">#d4e157</color>
     <color name="lime_400_light">#ffff89</color>
     <color name="lime_400_dark">#a0af22</color>
+    <color name="indigo_200">#9fa8da</color>
+    <color name="indigo_200_light">#d1d9ff</color>
+    <color name="indigo_200_dark">#6f79a8</color>
+    <color name="lime_100">#f0f4c3</color>
+    <color name="lime_100_light">#fffff6</color>
+    <color name="lime_100_dark">#bdc192</color>
 
     <!-- Text -->
     <color name="black">#FF000000</color>
