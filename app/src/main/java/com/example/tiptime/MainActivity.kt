@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculateTip() {
 
         // Get the decimal input value
-        val costOfService = binding.costOfService.text.toString().toDoubleOrNull()
+        val costOfService = binding.costOfServiceValue.text.toString().toDoubleOrNull()
 
         // If the provided value is null, clear the tip amount and then notify the user
         if (costOfService == null || costOfService == 0.0) {
