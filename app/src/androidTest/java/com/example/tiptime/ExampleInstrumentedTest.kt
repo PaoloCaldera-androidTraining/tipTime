@@ -63,7 +63,7 @@ class CalculatorTests {
             .check(matches(withText(containsString("$10.00"))))
     }
 
-
+    @Test
     fun calculate_15_percentage_tip() {
 
         // Select the EditText view and provide a value
