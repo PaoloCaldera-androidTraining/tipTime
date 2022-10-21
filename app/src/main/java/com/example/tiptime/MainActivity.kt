@@ -1,7 +1,11 @@
 package com.example.tiptime
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.tiptime.databinding.ActivityMainBinding
 import java.text.NumberFormat
@@ -13,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var tip = 0.0
+
+    companion object {
+        private const val LOG_TAG = "MainActivity::class"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +44,18 @@ class MainActivity : AppCompatActivity() {
         binding.calculateButton.setOnClickListener {
             calculateTip()
         }
+
+        // handle the keyboard hiding when the enter key is pressed
+        binding.costOfServiceValue.setOnKeyListener { v, keyCode, _ ->
+            handleKeyEvent(v, keyCode)
+        }
     }
+
 
     private fun calculateTip() {
 
         // Get the decimal input value
-        val costOfService = binding.costOfService.text.toString().toDoubleOrNull()
+        val costOfService = binding.costOfServiceValue.text.toString().toDoubleOrNull()
 
         // If the provided value is null, clear the tip amount and then notify the user
         if (costOfService == null || costOfService == 0.0) {
@@ -72,5 +86,26 @@ class MainActivity : AppCompatActivity() {
         // Format the tip with a currency, according to the phone language selected by the user
         val formattedTip = NumberFormat.getCurrencyInstance().format(tipToDisplay)
         binding.tipAmount.text = getString(R.string.tip_amount, formattedTip)
+    }
+
+
+    // Hide the keyboard when the enter command is selected
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+
+        // KEYCODE_ENTER is the code associated to the enter button of the soft keyboard
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+
+            // create an InputMethodManager object to handle the keyboard operations
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            // command for hiding the keyboard
+            // The token of the interested view, the TextInputEditText, is passed
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+
+            return true
+        }
+
+        return false
     }
 }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon_cost_of_service">Cost of service</string>
+    <string name="icon_service">How was the service</string>
+</resources>
